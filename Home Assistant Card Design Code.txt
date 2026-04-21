@@ -1,0 +1,60 @@
+type: picture-elements
+image: local/images/sprinker/f.jpg
+elements:
+  - type: image
+    entity: switch.sprinker_4_zones_zone_4
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    state_image:
+      "on": local/images/sprinker/z4.gif
+      "off": local/images/sprinker/t.png
+  - type: image
+    entity: switch.sprinker_4_zones_zone_1
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    state_image:
+      "on": local/images/sprinker/z1.gif
+      "off": local/images/sprinker/t.png
+  - type: image
+    entity: switch.sprinker_4_zones_zone_2
+    style:
+      left: 50%
+      top: 50%
+      width: 100%
+    state_image:
+      "on": local/images/sprinker/z2.gif
+      "off": local/images/sprinker/t.png
+  - type: state-icon
+    entity: switch.sprinker_4_zones_zone_4
+    icon: mdi:watering-can-outline
+    tap_action:
+      action: toggle
+    style:
+      left: 65%
+      top: 87%
+      mdc-icon-size: 15px
+      paper-item-icon-color: red
+  - type: state-icon
+    entity: switch.sprinker_4_zones_zone_1
+    icon: mdi:watering-can-outline
+    tap_action:
+      action: toggle
+    style:
+      left: 25%
+      top: 75%
+      mdc-icon-size: 15px
+      paper-item-icon-color: red
+  - type: state-icon
+    entity: switch.sprinker_4_zones_zone_2
+    icon: mdi:watering-can-outline
+    tap_action:
+      action: toggle
+    style:
+      left: 10%
+      top: 60%
+      mdc-icon-size: 15px
+      paper-item-icon-color: red
