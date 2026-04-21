@@ -1,0 +1,94 @@
+esphome:
+  name: sprinker-4-zones
+  friendly_name: sprinker_4_zones
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "boOm4xXFp7hYghhiS5Bw63IRBZMf2Dp5IeUG19zxXeY="
+
+ota:
+  - platform: esphome
+    password: "97d401083957c1557d7ee288888259a8"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Sprinker-4-Zones"
+    password: "mFMPjrXNP5x5"
+
+captive_portal:
+
+switch:
+  - platform: gpio
+    name: "Zone 1"
+    pin:
+      number: GPIO26
+      inverted: true      
+    id: zone1
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - switch.turn_off: zone2
+      - switch.turn_off: zone3
+      - switch.turn_off: zone4
+      - delay: 5min
+      - switch.turn_off: zone1
+
+  - platform: gpio
+    name: "Zone 2"
+    pin:
+      number: GPIO27
+      inverted: true  
+    id: zone2
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - switch.turn_off: zone1
+      - switch.turn_off: zone3
+      - switch.turn_off: zone4
+      - delay: 5min
+      - switch.turn_off: zone2
+
+  - platform: gpio
+    name: "Zone 3"
+    pin:
+      number: GPIO25
+      inverted: true 
+    id: zone3
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - switch.turn_off: zone1
+      - switch.turn_off: zone2
+      - switch.turn_off: zone4
+      - delay: 5min
+      - switch.turn_off: zone3
+
+  - platform: gpio
+    name: "Zone 4"
+    pin:
+      number: GPIO33
+      inverted: true        
+    id: zone4
+    restore_mode: ALWAYS_OFF
+    on_turn_on:
+      - switch.turn_off: zone1
+      - switch.turn_off: zone2
+      - switch.turn_off: zone3
+      - delay: 5min
+      - switch.turn_off: zone4
+
+web_server:
+  port: 80
+  auth:
+    username: admin
+    password: Password
